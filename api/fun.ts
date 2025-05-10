@@ -4,7 +4,8 @@ export const config = {
 
 const domain = ".wd.obscurative.ru";
 const proxyToRaw : Record<string, string> = {
-  "scientific-alliance": "scientific-alliance"
+  "scientific-alliance": "scientific-alliance",
+  "andivion-sandbox": "andivion-sandbox"
 };
 const wikidotSpaceName = "wikidot";
 
