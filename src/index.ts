@@ -39,7 +39,9 @@ const auth = {
 };
 
 if (!auth.username || !auth.password) {
-  console.error("Error: Proxy credentials must be provided via PROXY_USERNAME/PROXY_PASSWORD env vars.");
+  console.error(
+    "Error: Proxy credentials must be provided via PROXY_USERNAME/PROXY_PASSWORD env vars.",
+  );
   process.exit(1);
 }
 
@@ -50,7 +52,7 @@ const proxyToRaw: Record<string, string> = {
   secretnamesofstairs: "secretnamesofstairs",
   ambarra: "ambarra",
 };
-const wikidotSpaceName = "wikidot";
+const wikidotSpaceName = "wikidot-proxy";
 
 const proxyTo: Record<string, string> = (() => {
   let result: Record<string, string> = {};
@@ -93,16 +95,22 @@ async function main() {
     logger: true,
     https: config.ssl
       ? {
-        cert: readFileSync(config.ssl.certPath),
-        key: readFileSync(config.ssl.keyPath),
-      }
+          cert: readFileSync(config.ssl.certPath),
+          key: readFileSync(config.ssl.keyPath),
+        }
       : null,
   } as any);
 
   // Register plugins and wait for them
   await fastify.register(authPlugin);
   await fastify.register(basicAuth, {
-    validate: (username: string, password: string, req: any, reply: any, done: any) => {
+    validate: (
+      username: string,
+      password: string,
+      req: any,
+      reply: any,
+      done: any,
+    ) => {
       if (username === auth.username && password === auth.password) {
         done();
       } else {
@@ -113,7 +121,10 @@ async function main() {
   });
 
   // Now decorators should be available
-  fastify.addHook("onRequest", (fastify as any).auth([(fastify as any).basicAuth]));
+  fastify.addHook(
+    "onRequest",
+    (fastify as any).auth([(fastify as any).basicAuth]),
+  );
 
   fastify.all("*", async (request, reply) => {
     const url = new URL(request.url, `https://${request.hostname}`);
@@ -196,7 +207,7 @@ async function main() {
   }
 }
 
-main().catch(err => {
+main().catch((err) => {
   console.error("Fatal error during startup:", err);
   process.exit(1);
 });
