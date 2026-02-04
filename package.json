@@ -1,0 +1,23 @@
+{
+  "name": "wikidot-proxy",
+  "version": "1.0.0",
+  "description": "Standalone Wikidot Proxy with SSL, Auth, and Proxy support",
+  "main": "dist/index.js",
+  "scripts": {
+    "start": "node dist/index.js",
+    "dev": "tsx src/index.ts",
+    "build": "tsc"
+  },
+  "dependencies": {
+    "@fastify/auth": "^5.0.2",
+    "@fastify/basic-auth": "^6.0.2",
+    "fastify": "^5.2.1",
+    "undici": "^7.3.0",
+    "zod": "^3.24.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.19",
+    "tsx": "^4.7.1",
+    "typescript": "^5.3.3"
+  }
+}
