@@ -158,7 +158,8 @@ async function main() {
           request.method !== "GET" && request.method !== "HEAD"
             ? (request.body as any)
             : undefined,
-      });
+        duplex: "half",
+      } as any);
 
       const contentType = resp.headers.get("Content-Type") ?? "text/plain";
       let body: any;
