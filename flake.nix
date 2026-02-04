@@ -61,7 +61,7 @@
             after = [ "network.target" ];
             wantedBy = [ "multi-user.target" ];
             serviceConfig = {
-              ExecStart = "${self.packages.${pkgs.system}.default}}/bin/wikidot-proxy ${configFile}";
+              ExecStart = "${self.packages.${pkgs.system}.default}/bin/wikidot-proxy ${configFile}";
               EnvironmentFile = environmentFile;
               Restart = "always";
               User = "wikidot-proxy";
