@@ -22,7 +22,7 @@
           pname = "wikidot-proxy";
           version = "1.0.0";
           src = ./.;
-          npmDepsHash = pkgs.lib.fakeHash;
+          npmDepsHash = "sha256-G8ejrwO8QRGZ9Zu3Jper3qHgB0P0fE2WxSutJ9eHfQQ=";
           nativeBuildInputs = [ pkgs.typescript ];
           installPhase = ''
             runHook preInstall
