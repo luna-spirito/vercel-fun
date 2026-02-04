@@ -126,6 +126,10 @@ async function main() {
     (fastify as any).auth([(fastify as any).basicAuth]),
   );
 
+  fastify.addContentTypeParser("*", (request, payload, done) => {
+    done(null, payload);
+  });
+
   fastify.all("*", async (request, reply) => {
     const url = new URL(request.url, `https://${request.hostname}`);
     const space_host = request.hostname.split(config.domain);
